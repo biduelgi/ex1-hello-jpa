@@ -15,11 +15,20 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList();
-            for (Member member : result) {
-                System.out.println("member.name = " + member.getName());
-            }
+            Member member1 = new Member();
+            member1.setName("A");
+            Member member2 = new Member();
+            member2.setName("B");
+            Member member3 = new Member();
+            member3.setName("C");
+            System.out.println("==============");
+            em.persist(member1);
+//            em.persist(member2);
+//            em.persist(member3);
+            System.out.println("member1.Id = " + member1.getId());
+//            System.out.println("member2.Id = " + member2.getId());
+//            System.out.println("member3.Id = " + member3.getId());
+            System.out.println("==============");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
